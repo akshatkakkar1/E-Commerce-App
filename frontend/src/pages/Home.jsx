@@ -13,7 +13,7 @@ const Home = () => {
       <BestSeller />
       <OurPolicy />
       <NewsletterBox />
-      <h1 className='flex items-center justify-center'>Made By <span className='text-red-600'>&#9829;</span> with Akshat</h1>
+      
     </div>
   )
 }
