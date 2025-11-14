@@ -2,10 +2,12 @@ import React, { useContext, useState,useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { ShopContext } from '../context/ShopContext'
 import { assets } from '../assets/assets'
+import RelatedProduct from '../components/RelatedProduct'
+
 
 const Product = () => {
   const {productId} = useParams();
-  const {products,currency} = useContext(ShopContext);
+  const {products,currency,addToCart} = useContext(ShopContext);
 
   const [productData,setProductData] = useState(false);
   const [image,setImage] = useState('');
@@ -74,11 +76,38 @@ useEffect(()=>{
             </div>
 
           </div>
-          <button className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700'>ADD TO CART</button>
+          <button onClick={()=>addToCart(productData._id,size)} className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700'>ADD TO CART</button>
           <hr className='mt-8 sm:w-4/5'/>
-          
+          <div className='text-sm text-gray-500 mt-5 flex flex-col gap-1'>
+            <p>100% Original Product</p>
+            <p>Cash on delivery is available on this product</p>
+            <p>Easy returns and exchanges</p>
+
+          </div>
         </div>
       </div>
+
+              {/* Description and review section */}
+              <div className='mt-20'>
+                <div className='flex'>
+                  <b className='border px-5 py-3 text-sm'>Description</b>
+                  <p className='border px-5 py-3 text-sm'>Reviews (122)</p>
+
+                </div>
+
+
+              <div className='flex flex-col gap-4 border px-6 py-6 text-sm text-gray-500'>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae totam dolores consectetur perferendis veniam facere, blanditiis minus ad, exercitationem quibusdam consequuntur officia vero pariatur accusantium iure ducimus illum est nostrum?</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque harum facere tempora at maiores commodi repellat dicta quisquam quis modi! Culpa fugiat magni labore perspiciatis hic at, laboriosam vel ex.
+                Doloremque, ex saepe. Cum soluta aspernatur quae odio! Placeat perferendis alias est neque, ipsum ea veritatis nemo iste doloribus ex aspernatur labore sapiente magni repellendus consequuntur sit nulla porro necessitatibus.</p>
+
+
+              </div>
+              </div>
+
+              {/* display latest products */}
+              <RelatedProduct category={productData.category} subCategory={productData.subCategory} />
+
     </div>
   ): <div className='opacity-0'></div>
 }
