@@ -37,7 +37,7 @@ const Navbar = () => {
             <img onClick={() => setShowSearch(true)} src={assets.search_icon} className='w-5 cursor-pointer'  alt=""/>
 
       <div className='relative group'>
-        <img src={assets.profile_icon} className='w-5 cursor-pointer' alt=""/>
+       <Link to='/login'> <img src={assets.profile_icon} className='w-5 cursor-pointer' alt=""/></Link>
         <div className='hidden group-hover:block absolute right-0 top-full z-50'>
           <div className='mt-4 flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded shadow-lg'>
                         <p className='cursor-pointer hover:text-black'>My Profile</p>
