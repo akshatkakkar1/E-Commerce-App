@@ -15,7 +15,7 @@ try{
 
     let imagesUrl = await Promise.all(
         images.map(async(item)=>{
-            let result = await cloudinary.uploader.upload(item.path,{resource_type: "image"});
+            let result = await cloudinary.uploader.upload(item.path, {resource_type: "image"});
             return result.secure_url;
         })
     )
@@ -35,10 +35,10 @@ try{
   console.log(productData);
   const product = new productModel(productData);
   await product.save(); 
-    res.status(201).json({message: "Product added successfully"})
+    res.status(201).json({success: true, message: "Product added successfully"})
 }catch(error){
     console.log(error);
-    res.status(500).json({message: "Server Error"})
+    res.status(500).json({success: false, message: error.message})
 }
 }
 

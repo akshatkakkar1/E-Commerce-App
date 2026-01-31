@@ -36,7 +36,7 @@ const Footer = () => {
                 <hr className='border-t border-gray-200' />
                 <p className='py-5 text-sm text-center'>&copy; 2025 Ecommerce. All rights reserved.</p>
             </div>
-            <h1 className='flex items-center justify-center'>Made By <span className='text-red-600'>&#9829;</span> with Akshat</h1>
+            <h1 className='flex items-center justify-center'>Made with <span className='text-red-600'>&#9829;</span> By Akshat</h1>
         </footer>
     )
 }
