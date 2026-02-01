@@ -15,16 +15,16 @@ const loginUser = async (req,res) =>{
         //check if user exists
         const user = await userModel.findOne({email});
         if(!user){
-            return  res.status(400).json({message: "user does not exist"});
+            return  res.status(400).json({success: false, message: "user does not exist"});
         }
         //compare password
         const isMatch = await bcrypt.compare(password, user.password);
         if(!isMatch){
-            return res.status(400).json({message: "Invalid credentials"});
+            return res.status(400).json({success: false, message: "Invalid credentials"});
         }
         //generate token
         const token = createToken(user._id);
-        res.status(200).json({message: "Login successful", token});
+        res.status(200).json({success: true, message: "Login successful", token});
 
     }catch(error){
         res.status(500).json({message: "Server Error"})
@@ -63,7 +63,7 @@ const registerUser = async (req,res) =>{
         const user = await newUser.save();
         //token generation can be added here for authentication
         const token = createToken(user._id);
-        res.status(201).json({message: "User registered successfully", token} )
+        res.status(201).json({success: true, message: "User registered successfully", token} )
 
     }catch(error){
         res.status(500).json({message: "Server Error"})
@@ -78,7 +78,7 @@ const adminLogin = async (req,res) =>{
 
         if(email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD){
             const token = jwt.sign(email+password, process.env.JWT_SECRET);
-            return res.status(200).json({message: "Admin login successful", token});
+            return res.status(200).json({success: true, message: "Admin login successful", token});
     }else{
         return res.status(400).json({message: "Invalid admin credentials"});
     }
